@@ -21,17 +21,27 @@ def main():
         input_filepath = sys.argv[1]
 
     with open(input_filepath, mode='r') as input:
-        counter = 0
+        safe_counter = 0
+        less_safe_counter = 0
+        
         for line in input:
             numbers = [int(x) for x in line.split()]
 
             if len(numbers) == 1:
-                counter+=1
+                safe_counter+=1
                 continue
 
             if diffsAreSmall(numbers) and (isOrdered(numbers, lambda x,y: x < y) or isOrdered(numbers, lambda x,y: x > y)):
-                counter += 1
-        print(counter)
+                safe_counter += 1
+
+            for i in range(len(numbers)):
+                modified_numbers = numbers[:i] + numbers[i+1:]
+                if diffsAreSmall(modified_numbers) and (isOrdered(modified_numbers, lambda x,y: x < y) or isOrdered(modified_numbers, lambda x,y: x > y)):
+                    less_safe_counter += 1
+                    break
+        print(safe_counter)
+        print(less_safe_counter)
+
 
 
 if __name__ == "__main__":
