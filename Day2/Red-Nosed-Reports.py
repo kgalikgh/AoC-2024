@@ -34,15 +34,7 @@ def main():
             if diffsAreSmall(numbers) and (isOrdered(numbers, lambda x,y: x < y) or isOrdered(numbers, lambda x,y: x > y)):
                 safe_counter += 1
 
-            for i in range(len(numbers)):
-                modified_numbers = numbers[:i] + numbers[i+1:]
-                if diffsAreSmall(modified_numbers) and (isOrdered(modified_numbers, lambda x,y: x < y) or isOrdered(modified_numbers, lambda x,y: x > y)):
-                    less_safe_counter += 1
-                    break
         print(safe_counter)
-        print(less_safe_counter)
-
-
 
 if __name__ == "__main__":
     main()
