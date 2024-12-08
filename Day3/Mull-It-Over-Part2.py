@@ -16,8 +16,6 @@ def main():
 
         all_ops += re.findall(prog, text)
 
-        print(all_ops)
-
         result = 0
         enabled = True 
         for op in all_ops:
